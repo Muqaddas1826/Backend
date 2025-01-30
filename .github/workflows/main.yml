@@ -23,7 +23,7 @@ jobs:
           node-version: '18'  # Set the Node.js version you are using
 
       - name: Install dependencies and start app
-         run: |
+        run: |
           ls  # List files to verify current directory
           cd Backend  # Change to the Backend directory
           npm install  # Install dependencies
