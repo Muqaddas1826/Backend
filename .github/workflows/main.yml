@@ -23,9 +23,16 @@ jobs:
           node-version: '18'  # Set the Node.js version you are using
 
       - name: Install dependencies and start app
-        run: |
-          ls  # List files to verify current directory
-          cd Backend  # Try to go into Backend directory
+       run: |
+    echo "Deployment started..."
+    # Check if Backend directory exists before changing into it
+    if [ -d "Backend" ]; then
+      cd Backend
+    else
+      echo "Backend directory does not exist, skipping..."
+    fi
+    # Pull the latest changes and build the project
+    git pull origin master
           npm install  # Install dependencies
           npm start    # Start the application
           pm2 restart 1  # Restart the app using pm2
