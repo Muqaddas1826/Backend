@@ -28,7 +28,7 @@ jobs:
           ls  # List files to verify current directory
           # cd Backend  # Change to the Backend directory
           npm install  # Install dependencies
-          npm start    # Start the application
+          #npm start    # Start the application
           pm2 restart 1  # Restart the app using pm2
 
 
