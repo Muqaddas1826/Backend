@@ -13,6 +13,10 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2  # Checkout your repository's code
 
+      - name: Debugging - List files
+        run: |
+          ls -R  # List files recursively to confirm the presence of the Backend directory
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -20,12 +24,11 @@ jobs:
 
       - name: Install dependencies and start app
         run: |
-          ls
-          cd Backend
+          ls  # List files to verify current directory
+          cd Backend  # Try to go into Backend directory
           npm install  # Install dependencies
           npm start    # Start the application
           pm2 restart 1  # Restart the app using pm2
-
 
 
 
