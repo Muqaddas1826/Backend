@@ -1,4 +1,4 @@
-name: Deploy to Server
+name: Deploy to Server 
 
 on:
   push:
@@ -7,60 +7,23 @@ on:
 
 jobs:
   deploy:
-    runs-on: self-hosted  # You can specify your self-hosted runner here
+    runs-on: self-hosted  # Run the job on an Ubuntu runner
 
     steps:
       - name: Checkout the code
         uses: actions/checkout@v2  # Checkout your repository's code
 
-      - name: Debugging - List files
-        run: |
-          ls -R  # List files recursively to confirm the presence of the Backend directory
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'  # Set the Node.js version you are using
-
-      - name: Install dependencies and start app
-        run: |
-          ls  # List files to verify current directory
-          cd Backend  # Try to go into Backend directory
-          npm install  # Install dependencies
-          npm start    # Start the application
-          pm2 restart 1  # Restart the app using pm2
-
-
-
-
-
-
-# name: Deploy to Server via SSH
-
-# on:
-#   push:
-#     branches:
-#       - master  # Trigger this workflow on push to the main branch
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest  # Run the job on an Ubuntu runner
-
-#     steps:
-#       # - name: Checkout the code
-#       #   uses: actions/checkout@v2  # Checkout your repository's code
-
-#       - name: Set up SSH private key
-#         uses: appleboy/ssh-action@master  # Use Appleboy's SSH Action
-#         with:
-#           host: ${{ secrets.HOST }}  # Server's IP address or hostname
-#           username: ${{ secrets.USERNAME }}  # SSH username (e.g., ubuntu for AWS EC2)
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}  # The private SSH key secret
-#           port: 22  # SSH port (default is 22)
-#           script: |
-#                 ls
-#                 cd Backend
-#                 ls
-#                 npm i
-#                 npm start
-#                 pm2 restart 1
+      # - name: Set up SSH private key
+      #   uses: appleboy/ssh-action@master  # Use Appleboy's SSH Action
+      #   with:
+      #     host: ${{ secrets.HOST }}  # Server's IP address or hostname
+      #     username: ${{ secrets.USERNAME }}  # SSH username (e.g., ubuntu for AWS EC2)
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}  # The private SSH key secret
+      #     port: 22  # SSH port (default is 22)
+          script: |
+                ls
+                cd Backend
+                ls
+                npm i
+                npm start
+                pm2 restart 1
